@@ -24,8 +24,10 @@ export const App = () => {
   const [titleError, setTitleError] = useState(false);
   const [userIdError, setUserIdError] = useState(false);
 
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value;
+  const handleTitleChange = (
+    changeEvent: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    let value = changeEvent.target.value;
 
     // Optional: Allow only letters (ua and en), digits, and spaces
     value = value.replace(/[^a-zA-Zа-яА-ЯіІїЇєЄґҐ0-9\s]/g, '');
@@ -37,8 +39,10 @@ export const App = () => {
     }
   };
 
-  const handleUserIdChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = Number(e.target.value);
+  const handleUserIdChange = (
+    changeEvent: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    const value = Number(changeEvent.target.value);
 
     setUserId(value);
 
@@ -47,8 +51,8 @@ export const App = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (submitEvent: React.FormEvent<HTMLFormElement>) => {
+    submitEvent.preventDefault();
 
     let hasError = false;
 
@@ -97,7 +101,9 @@ export const App = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="field">
+          <label htmlFor="titleInput">Title</label>
           <input
+            id="titleInput"
             type="text"
             data-cy="titleInput"
             placeholder="Enter todo title"
@@ -108,7 +114,9 @@ export const App = () => {
         </div>
 
         <div className="field">
+          <label htmlFor="userSelect">User</label>
           <select
+            id="userSelect"
             data-cy="userSelect"
             value={userId}
             onChange={handleUserIdChange}

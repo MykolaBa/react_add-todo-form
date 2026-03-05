@@ -2,10 +2,14 @@ import { UserInfo } from '../UserInfo';
 import { Todo } from '../../types/Todo';
 
 type Props = {
-  todo: Todo;
+  todo?: Todo | null;
 };
 
 export const TodoInfo = ({ todo }: Props) => {
+  if (!todo) {
+    return null;
+  }
+
   return (
     <article
       data-id={todo.id}
